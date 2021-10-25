@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<title>Travel Planner:Show Activity List</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css"
+	th:href="@{css/bootstrap.min.css}" />
+<style>
+table {
+	border-collapse: separate;
+}
+
+th {
+	background-color: #77DD77;
+	color: black;
+}
+
+th, td {
+	width: 150px;
+	text-align: center;
+	border: 1px solid black;
+	padding: 5px;
+}
+</style>
+</head>
+<body>
+
+	<h1>Travel Planner</h1>
+	<div>
+		<h3 th:inline="text">Welcome
+			[[${#httpServletRequest.remoteUser}]]</h3>
+	</div>
+	¨
+	<div>
+		<form th:action="@{/logout}" method="post">
+			<input type="submit" value="Sign Out" class="btn btn-sm btn-danger" />
+		</form>
+	</div>
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>Activity</th>
+				<th>Date</th>
+				<th>City</th>
+				<th>Description</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="activity : ${activityList}">
+				<td><span th:text="${activity.name}"> Activity </span></td>
+				<td><span th:text="${activity.date}"> Date </span></td>
+				<td><span th:text="${activity.city.name}"> City </span></td>
+				<td><span th:text="${activity.description}"> Description </span></td>
+				<td><a th:href="@{/edit/{id}(id=${activity.id})}">Edit</a></td>
+				<td sec:authorize="hasAuthority('ADMIN')"><a
+					th:href="@{/delete/{id}(id=${activity.id})}"
+					class="btn btn-xs btn-danger">Delete</a></td>
+			</tr>
+		</tbody>
+	</table>
+	<a href="/add" class="btn btn-success">Add Activity</a>
+</body>
+</html>
