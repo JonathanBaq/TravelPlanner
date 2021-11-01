@@ -36,12 +36,14 @@ public class TravelPlannerApplication {
 	CommandLineRunner runner() {
 		return args -> {
 			// Add City objects and save to db
+			crepository.deleteAll();
 			City city1 = new City("Berlin");
 			City city2 = new City("Munich");
 			crepository.save(city1);
 			crepository.save(city2);
 
 			// Test Data
+			arepository.deleteAll();
 			Activity activity = new Activity("Stay at Hampton by Hilton Berlin West", "1.1.2022 - 2.1.2022", city1,
 					"Link to Booking.com reservation");
 			arepository.save(activity);
@@ -54,6 +56,7 @@ public class TravelPlannerApplication {
 			arepository.save(activity);
 
 			// Create users: admin/admin user/user
+			urepository.deleteAll();
 			User user1 = new User("user", "USER", "$2a$10$Ho3mcGwGAiE/y896/SeEvus89L7SNS8h8EHqvO2UGjqYc2JARr..K");
 			User user2 = new User("admin", "ADMIN", "$2a$10$lrthSAfYPE5eFJTFNJeWOej.wUST/FrUUKfq71Bxz4xxcmNLy4cvW");
 			urepository.save(user1);
