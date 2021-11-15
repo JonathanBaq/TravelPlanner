@@ -3,28 +3,56 @@
 <head>
 <title>Travel App:Add</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<style>
-</style>
+<link rel="stylesheet"
+	th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css}" />
 </head>
-<body>
+<style>
+h1 {
+	margin: auto;
+	width: 50%;
+	padding: 10px;
+}
 
+.addForm {
+	border: solid;
+	margin: auto;
+	width: 50%;
+	padding: 10px;
+}
+
+.textbox {
+	height: 100px;
+	width: 50%;
+}
+
+.input {
+	width: 50%;
+}
+</style>
+<body>
 	<h1>Add Activity</h1>
-	<div>
+	<div class="addForm">
 		<form th:object="${activity}" th:action="@{/save}" action="#"
 			method="post">
 			<label for="activity">Activity</label> 
-				<input type="text" id="activity" th:field="*{name}" /> <br><br>
-			<label for="date">Date</label> 
-				<input type="text" id="date" th:field="*{date}" /> <br><br>
-			<label for="cityList">City</label>
-			<select id="cityList" th:field="*{city}" class="form-control">
-				<option th:each="city: ${cities}"
-						th:value="${city.cityId}"
-						th:text="${city.name}"></option>
-			</select> <br><br>
+				<input class="input" type="text" id="activity" th:field="*{name}" /> <br>
+				
+			<label for="date">Date</label>
+				<input class="input" type="text" id="date" th:field="*{date}" /> <br>
+				
+			<label for="cityList">City</label> 
+				<div><select style="width: 200px" id="cityList" th:field="*{city}"
+					class="form-control">
+				<option th:each="city: ${cities}" th:value="${city.cityId}"
+					th:text="${city.name}"></option></select></div> <br>
+			
 			<label for="description">Description</label>
-				<input type="text" th:field="*{description}" /> <br><br>
-			<input type="submit" value="Save"></input>
+			<div>
+				<textarea class="textbox" th:field="*{description}"></textarea><br>
+			</div> 
+				
+			<input type="submit" class="btn btn-success" value="Save"></input>
+			<a href="/activitylist" class="btn btn-danger">Cancel</a>
 		</form>
 	</div>
 </body>

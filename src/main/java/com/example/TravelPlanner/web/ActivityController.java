@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.TravelPlanner.domain.Activity;
 import com.example.TravelPlanner.domain.ActivityRepository;
+import com.example.TravelPlanner.domain.City;
 import com.example.TravelPlanner.domain.CityRepository;
 
 @Controller
@@ -28,7 +29,20 @@ public class ActivityController {
 	@GetMapping("/activitylist")
 	public String getActivityList(Model model) {
 		model.addAttribute("activityList", arepository.findAll());
+		model.addAttribute("city", new City());
+		model.addAttribute("cities", crepository.findAll());
 		System.out.println("PROGRAM READS: " + arepository.findAll());
+		return "activityList";
+	}
+
+	// Mapping for city filter
+	@PostMapping(value = "/activitylist")
+	public String cityFilter(City city, Model model) {
+		List<Activity> activityList = arepository.findByCity(crepository.findById(city.getCityId()).get());
+
+		model.addAttribute("activityList", activityList);
+		model.addAttribute("city", new City());
+		model.addAttribute("cities", crepository.findAll());
 		return "activityList";
 	}
 

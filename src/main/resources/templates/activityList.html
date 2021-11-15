@@ -7,35 +7,91 @@
 <link rel="stylesheet"
 	th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css}" />
 <style>
+h1 {
+	margin: auto;
+	width: 20%;
+	margin-top: 10px;
+	float: center;
+}
 table {
-	border-collapse: separate;
+	padding: 10px;
+	border-bottom: solid lightgrey;
 }
 
 th {
-	background-color: #77DD77;
 	color: black;
 }
 
 th, td {
 	width: 150px;
 	text-align: center;
-	border: 1px solid black;
 	padding: 5px;
+}
+
+.userLog {
+	padding: 10px;
+}
+
+.date {
+	float: right;
+	padding: 10px;
+	font-size: 20px;
+}
+
+.info {
+	padding: 10px;
+}
+
+.filter {
+	width: 25%;
+	margin-right: 20px;
+	float: right;
+}
+
+.btn {
+	padding: 10px;
 }
 </style>
 </head>
 <body>
 
 	<h1>Travel Planner</h1>
-	<div>
-		<h3 th:inline="text">Welcome
-			[[${#httpServletRequest.remoteUser}]]</h3>
+	
+	<div class="date">
+		<p th:text="${#dates.format(#dates.createNow(), 'dd/MM/YYYY HH:mm')}">
 	</div>
-	¨
-	<div>
+	
+	<div class="userLog">
+		<h2 th:inline="text">Welcome
+			[[${#httpServletRequest.remoteUser}]]!</h2>
 		<form th:action="@{/logout}" method="post">
 			<input type="submit" value="Sign Out" class="btn btn-sm btn-danger" />
 		</form>
+	</div>
+	
+	<div class="info">
+		<h3>
+			Total Activities: <span th:if="null">0</span> <span
+				th:text="${#lists.size(activityList)}">[Activities] </span>
+		</h3>
+	</div>
+	
+	<div class="filter">
+		<form action="#" th:action="@{/activitylist}" th:object="${city}"
+			method="post">
+			<div class="row">
+				<select id="city" th:field="*{cityId}" name="city"
+					class="col form-control">
+					<option th:each="city : ${cities}" th:value="${city.cityId}"
+						th:text="${city.name}"></option>
+				</select> <input type="submit" value="Filter by location"
+					class="btn btn-info" />
+				<a href="/activitylist" class="btn btn-danger">Reset Filters</a>
+			</div>
+		</form>
+	</div>
+	<div class="btn">
+		<a href="/add" class="btn btn-success">Add Activity</a>
 	</div>
 	<table class="table table-striped">
 		<thead>
@@ -44,6 +100,8 @@ th, td {
 				<th>Date</th>
 				<th>City</th>
 				<th>Description</th>
+				<th sec:authorize="hasAuthority('ADMIN')"></th>
+				<th></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -60,7 +118,5 @@ th, td {
 			</tr>
 		</tbody>
 	</table>
-	<a href="/add" class="btn btn-success">Add Activity</a>
-	
 </body>
 </html>

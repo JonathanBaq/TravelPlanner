@@ -7,4 +7,5 @@ import org.springframework.data.repository.CrudRepository;
 public interface ActivityRepository extends CrudRepository<Activity, Long> {
 
 	List<Activity> findByName(String name);
+	List<Activity> findByCity(City city);
 }

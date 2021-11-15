@@ -3,23 +3,22 @@ package com.example.TravelPlanner;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import com.example.TravelPlanner.web.ActivityController;
 
-@ExtendWith(SpringExtension.class)
+@RunWith(SpringRunner.class)
 @SpringBootTest
 class TravelPlannerApplicationTests {
 	// Smoke test: Testing that context creates controller
 	@Autowired
-	private ActivityController controller;
+	private ActivityController acontroller;
 
 	@Test
-	void contextLoads() throws Exception {
-		assertThat(controller).isNotNull();
+	public void contextLoads() throws Exception {
+		assertThat(acontroller).isNotNull();
 	}
-
 }
