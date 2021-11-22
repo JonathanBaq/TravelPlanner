@@ -84,7 +84,8 @@ th, td {
 					class="col form-control">
 					<option th:each="city : ${cities}" th:value="${city.cityId}"
 						th:text="${city.name}"></option>
-				</select> <input type="submit" value="Filter by location"
+				</select> 
+				<input type="submit" value="Filter by location"
 					class="btn btn-info" />
 				<a href="/activitylist" class="btn btn-danger">Reset Filters</a>
 			</div>
@@ -93,6 +94,7 @@ th, td {
 	<div class="btn">
 		<a href="/add" class="btn btn-success">Add Activity</a>
 	</div>
+
 	<table class="table table-striped">
 		<thead>
 			<tr>

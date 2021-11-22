@@ -40,11 +40,13 @@ h1 {
 			<label for="date">Date</label> 
 			<input class="input" type="text" id="date" th:field="*{date}" /> <br> 
 			
-			<label for="cityList">City</label> <select style="width: 200px" id="cityList"
-				th:field="*{city}" class="form-control">
-				<option th:each="city: ${cities}" th:value="${city.cityId}"
-					th:text="${city.name}"></option>
-			</select> <br>
+			<label for="cityList">City</label> 
+				<select style="width: 200px" id="cityList"
+					th:field="*{city}" class="form-control">
+					<option label="Select city" value=""></option>
+					<option th:each="city: ${cities}" th:value="${city.cityId}"
+						th:text="${city.name}"></option>
+				</select> <br>
 			
 			<label for="description">Description</label>
 			<div>

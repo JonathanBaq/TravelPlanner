@@ -28,31 +28,46 @@ h1 {
 .input {
 	width: 50%;
 }
+
+.addCity {
+	margin: auto;
+	width: 50%;
+	padding: 10px;
+}
 </style>
 <body>
 	<h1>Add Activity</h1>
+	<div class="addCity">
+		<form th:object="${city}" th:action="@{/saveCity}" action="#"
+			method="post">
+			<input class="input" type="text" id="addCity" th:field="*{name}" />
+			<input type="submit" class="btn btn-success" value="Add new city"></input>
+		</form>
+	</div>
+
 	<div class="addForm">
 		<form th:object="${activity}" th:action="@{/save}" action="#"
 			method="post">
-			<label for="activity">Activity</label> 
-				<input class="input" type="text" id="activity" th:field="*{name}" /> <br>
-				
-			<label for="date">Date</label>
-				<input class="input" type="text" id="date" th:field="*{date}" /> <br>
-				
-			<label for="cityList">City</label> 
-				<div><select style="width: 200px" id="cityList" th:field="*{city}"
+			<label for="activity">Activity</label> <input class="input"
+				type="text" id="activity" th:field="*{name}" /> <br> <label
+				for="date">Date</label> <input class="input" type="text" id="date"
+				th:field="*{date}" /> <br> <label for="cityList">City</label>
+			<div>
+				<select style="width: 200px" id="cityList" th:field="*{city}"
 					class="form-control">
-				<option th:each="city: ${cities}" th:value="${city.cityId}"
-					th:text="${city.name}"></option></select></div> <br>
-			
+					<option label="Select city" value=""></option>
+					<option th:each="city: ${cities}" th:value="${city.cityId}"
+						th:text="${city.name}"></option>
+				</select>
+			</div>
 			<label for="description">Description</label>
 			<div>
-				<textarea class="textbox" th:field="*{description}"></textarea><br>
-			</div> 
-				
-			<input type="submit" class="btn btn-success" value="Save"></input>
-			<a href="/activitylist" class="btn btn-danger">Cancel</a>
+				<textarea class="textbox" th:field="*{description}"></textarea>
+				<br>
+			</div>
+
+			<input type="submit" class="btn btn-success" value="Save"></input> <a
+				href="/activitylist" class="btn btn-danger">Cancel</a>
 		</form>
 	</div>
 </body>

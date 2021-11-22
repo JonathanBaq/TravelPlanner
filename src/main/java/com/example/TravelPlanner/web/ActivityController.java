@@ -63,6 +63,7 @@ public class ActivityController {
 	public String addActivity(Model model) {
 		model.addAttribute("activity", new Activity());
 		model.addAttribute("cities", crepository.findAll());
+		model.addAttribute("city", new City());
 		return "addActivity";
 	}
 
@@ -72,6 +73,13 @@ public class ActivityController {
 	public String save(Activity activity) {
 		arepository.save(activity);
 		return "redirect:/activitylist";
+	}
+
+	// Add city
+	@PostMapping(value = "/saveCity")
+	public String save(City city) {
+		crepository.save(city);
+		return "redirect:/add";
 	}
 
 	// Map delete by id then redirect to list

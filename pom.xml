@@ -17,6 +17,7 @@
 	<properties>
 		<java.version>1.8</java.version>
 	</properties>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -78,6 +79,7 @@
 			<artifactId>bootstrap</artifactId>
 			<version>4.0.0-2</version>
 		</dependency>
+
 	</dependencies>
 
 	<build>
