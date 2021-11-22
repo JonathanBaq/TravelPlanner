@@ -1,10 +1,10 @@
 # TravelPlanner
 A travel planner backend application.
 
-###Deployment
+### Deployment
 [Heroku](https://travel-planner-backend-app.herokuapp.com/login)
 
-###login 
+### Login 
 user/user, admin/admin
 REST api endpoint: /api
 
