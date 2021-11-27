@@ -7,7 +7,7 @@ A travel planner backend application.
 ### Login 
 user/user  
 admin/admin  
-REST api endpoint: [https://travel-planner-backend-app.herokuapp.com/login/api](https://travel-planner-backend-app.herokuapp.com/login/api)
+REST api endpoint: [https://travel-planner-backend-app.herokuapp.com/api](https://travel-planner-backend-app.herokuapp.com/api)
 
 ## Stack
 Spring Boot  
