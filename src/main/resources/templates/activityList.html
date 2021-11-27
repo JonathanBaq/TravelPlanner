@@ -51,6 +51,10 @@ th, td {
 .btn {
 	padding: 10px;
 }
+
+.tdButton {
+	width: 10%;
+}
 </style>
 </head>
 <body>
@@ -113,10 +117,14 @@ th, td {
 				<td><span th:text="${activity.city.name}"> City </span></td>
 				<td><span th:text="${activity.description}"> Description
 				</span></td>
-				<td><a th:href="@{/edit/{id}(id=${activity.id})}">Edit</a></td>
-				<td sec:authorize="hasAuthority('ADMIN')"><a
-					th:href="@{/delete/{id}(id=${activity.id})}"
-					class="btn btn-xs btn-danger">Delete</a></td>
+				<td class="tdButton">
+					<a th:href="@{/edit/{id}(id=${activity.id})}"
+					   class="btn btn-info">Edit</a>
+				</td>
+				<td class="tdButton" sec:authorize="hasAuthority('ADMIN')">
+					<a th:href="@{/delete/{id}(id=${activity.id})}"
+					class="btn btn-xs btn-danger">Delete</a>
+				</td>
 			</tr>
 		</tbody>
 	</table>

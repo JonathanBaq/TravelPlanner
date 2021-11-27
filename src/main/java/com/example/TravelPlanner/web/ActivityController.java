@@ -8,6 +8,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -75,9 +76,9 @@ public class ActivityController {
 		return "redirect:/activitylist";
 	}
 
-	// Add city
+	// Add city from addActivity form
 	@PostMapping(value = "/saveCity")
-	public String save(City city) {
+	public String saveCity(City city) {
 		crepository.save(city);
 		return "redirect:/add";
 	}
@@ -95,6 +96,13 @@ public class ActivityController {
 	public String editBook(@PathVariable("id") Long activityId, Model model) {
 		model.addAttribute("activity", arepository.findById(activityId));
 		model.addAttribute("cities", crepository.findAll());
+		model.addAttribute("city", new City());
 		return "editActivity";
+	}
+
+	@GetMapping(value = "/saveEdit")
+	public String submitActivityEdit(@ModelAttribute Activity activity) {
+		arepository.save(activity);
+		return "redirect:/activitylist";
 	}
 }

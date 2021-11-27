@@ -28,12 +28,20 @@ h1 {
 .input {
 	width: 50%;
 }
+
+.addEditCity {
+	margin: auto;
+	width: 50%;
+	padding: 10px;
+}
 </style>
 <body>
 
 	<h1>Edit Activity</h1>
+	
 	<div class="editForm">
-		<form th:object="${activity}" th:action="@{/save}" action="#" method="post">
+		<form th:object="${activity}" th:action="@{/saveEdit}" action="#" method="get">
+			<input type="hidden" th:field="*{id}" class="form-control"/>
 			<label for="activity">Activity</label> 
 			<input class="input" type="text" id="activity" th:field="*{name}" /> <br>
 			
