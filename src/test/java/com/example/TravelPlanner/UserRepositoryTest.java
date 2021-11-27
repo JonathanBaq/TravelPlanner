@@ -34,6 +34,6 @@ public class UserRepositoryTest {
 	public void deleteUser() {
 		User user = urepository.findByUsername("user");
 		urepository.deleteById(user.getId());
-		assertThat(urepository.count()).isEqualTo(1);
+		assertThat(urepository.count()).isEqualTo(2);
 	}
 }

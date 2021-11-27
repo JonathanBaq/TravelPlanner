@@ -47,6 +47,6 @@ public class ActivityRepositoryTest {
 		List<Activity> activity = arepository.findByName("Stay at Hampton by Hilton Berlin West");
 
 		arepository.deleteById(activity.get(0).getId());
-		assertThat(arepository.count()).isEqualTo(3);
+		assertThat(arepository.count()).isEqualTo(4);
 	}
 }

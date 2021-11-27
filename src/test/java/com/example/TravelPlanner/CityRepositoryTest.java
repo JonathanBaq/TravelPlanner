@@ -36,6 +36,6 @@ public class CityRepositoryTest {
 		List<City> cities = crepository.findByName("Berlin");
 
 		crepository.deleteById(cities.get(0).getCityId());
-		assertThat(crepository.count()).isEqualTo(1);
+		assertThat(crepository.count()).isEqualTo(3);
 	}
 }
